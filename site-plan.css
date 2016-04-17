@@ -1,0 +1,91 @@
+/* colors
+	white			#fff
+	pale green		#EBF5EB
+	lt green		#cce6cc
+	med green		#9C9
+	green			#5a5
+	dk green		#363
+	dk blue			#466290
+	lt blue			#F0F5FF
+	black			#000  
+*/
+
+body {
+	background-color: #fff;
+	font: 12px/1.3 arial, helvetica, sans-serif;
+	margin: 0;
+	padding: 12px 9px 1px 9px;
+}
+
+a, a:visited {
+	color: #363;
+	text-decoration: underline;
+}
+a:hover, a:active {
+	color: #5a5;
+	text-decoration: none;
+}
+
+ul {
+	list-style-type: none;
+	margin: 0 9px 9px 9px;
+	overflow: hidden;
+	padding: 0;
+}
+li {
+	margin: 0;
+	padding: 0 0 0 24px;	
+}
+
+.left {
+	float: left;
+}
+
+.ib {
+	display: inline-block;
+	vertical-align: top;
+}
+
+.alt1 {
+	background-color: rgba(210,226,210,.7);
+}
+
+.box {
+	border: 1px solid #8FBC8F;
+	margin: 0 3px 6px 3px;
+	overflow: hidden;
+	padding: 6px;
+}
+
+.plan {
+	margin-bottom: 20px;
+}
+
+.planlist {
+	font-size: 11px;
+}
+.planlist ul {
+	margin: 0;
+}
+.left.planlist + .left.planlist {
+	margin-left: 9px;
+}
+.planlist li {
+	background-image: none;
+	padding: 3px;
+	margin: 0;	
+}
+.planlist li:hover {
+	background-color: #cce6cc;
+}
+.planlist label {
+	display: inline-block;
+	width: 16px;
+	text-align: right;
+}
+.planlist .alt0 {
+	text-align: center;
+}
+.planlist li a {
+	font-weight: bold;
+}
