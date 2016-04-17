@@ -8,6 +8,12 @@
 	dk blue			#466290
 	lt blue			#F0F5FF
 	black			#000  
+
+	occupied space			#EEE
+	occupied space hover	#F0F5FF
+
+	available space			yellow
+	available hover			red
 */
 
 body {
@@ -88,4 +94,25 @@ li {
 }
 .planlist li a {
 	font-weight: bold;
+}
+
+.svg {
+	width: 800px;
+	border: 1px solid red;
+}
+
+svg .space {
+	fill: #EEE;
+}
+
+svg .space.available {
+	fill: #ff0;
+}
+
+svg .space:hover {
+	fill: #F0F5FF;
+}
+
+svg .space.available:hover {
+	fill: #F00;
 }
