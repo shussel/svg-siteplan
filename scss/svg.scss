@@ -1,15 +1,43 @@
-svg .space {
-	fill: #eee;
+$space-color: #eee;
+$space-hover-color: #add8e6;
+$space-available-color: #fefda0;
+$space-available-hover-color: #f00;
+
+$land-color: #99CC99;
+$land-hover-color: #99CC99;
+$land-available-color: #D2FABA;
+$land-available-hover-color: #277C2B;
+
+.space {
+
+	fill: $space-color;
+
+	&:hover {
+		fill: $space-hover-color;
+	}
+
+	&.available {
+		fill: $space-available-color;
+	}
+
+	&.available:hover {
+		fill: $space-available-hover-color;
+	}
 }
 
-svg .space.available {
-	fill: #fefda0;
-}
+.land {
 
-svg .space:hover {
-	fill: #add8e6;
-}
+	fill: $land-color;
 
-svg .space.available:hover {
-	fill: #f00;
+	&:hover {
+		fill: $land-hover-color;
+	}
+
+	&.available {
+		fill: $land-available-color;
+	}
+
+	&.available:hover {
+		fill: $land-available-hover-color;
+	}
 }

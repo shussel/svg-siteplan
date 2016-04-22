@@ -1,0 +1,44 @@
+.plan {
+	margin-bottom: 20px;
+}
+
+.planlist {
+	font-size: 11px;
+
+	ul {
+		margin: 0;
+	}
+
+	li {
+		background-image: none;
+		padding: 3px;
+		margin: 0;	
+	}
+
+	li:hover {
+		background-color: #cce6cc;
+	}
+
+	li a {
+		font-weight: bold;
+	}
+
+	label {
+		display: inline-block;
+		width: 16px;
+		text-align: right;
+	}
+
+	.alt0 {
+		text-align: center;
+	}
+}
+
+.left.planlist + .left.planlist {
+	margin-left: 9px;
+}
+
+.svg {
+	width: 800px;
+	border: 1px solid red;
+}
