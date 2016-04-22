@@ -1,0 +1,24 @@
+{
+  "name": "svg-plans",
+  "version": "1.0.0",
+  "description": "Dynamic occupancy site plan",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shussel/svg-siteplan.git"
+  },
+  "author": "Shane Hussel",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/shussel/svg-siteplan/issues"
+  },
+  "homepage": "https://github.com/shussel/svg-siteplan#readme",
+  "devDependencies": {
+    "browser-sync": "^2.12.3",
+    "gulp": "^3.9.1",
+    "gulp-sass": "^2.3.1"
+  }
+}

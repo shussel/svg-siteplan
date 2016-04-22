@@ -1,0 +1,15 @@
+svg .space {
+	fill: #eee;
+}
+
+svg .space.available {
+	fill: #fefda0;
+}
+
+svg .space:hover {
+	fill: #add8e6;
+}
+
+svg .space.available:hover {
+	fill: #f00;
+}

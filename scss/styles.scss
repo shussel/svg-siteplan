@@ -9,11 +9,11 @@
 	lt blue			#F0F5FF
 	black			#000  
 
-	occupied space			#EEE
-	occupied space hover	#F0F5FF
+	occupied space	 		#eee
+	occupied space hover	#ADD8E6
 
-	available space			yellow
-	available hover			red
+	available space			#fefda0
+	available hover			#f00
 */
 
 body {
@@ -99,20 +99,4 @@ li {
 .svg {
 	width: 800px;
 	border: 1px solid red;
-}
-
-svg .space {
-	fill: #EEE;
-}
-
-svg .space.available {
-	fill: #ff0;
-}
-
-svg .space:hover {
-	fill: #F0F5FF;
-}
-
-svg .space.available:hover {
-	fill: #F00;
 }
