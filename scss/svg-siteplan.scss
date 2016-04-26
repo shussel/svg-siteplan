@@ -8,6 +8,11 @@ $land-hover-color: #99CC99;
 $land-available-color: #D2FABA;
 $land-available-hover-color: #277C2B;
 
+$unowned-land-color: #ebf5eb;
+
+$sidewalk-color: #ccc;
+$building-color: #000;
+
 .space {
 
 	fill: $space-color;
@@ -41,3 +46,16 @@ $land-available-hover-color: #277C2B;
 		fill: $land-available-hover-color;
 	}
 }
+
+.unowned-land {
+	fill: $unowned-land-color;
+}
+
+.sidewalk {
+	fill: $sidewalk-color;
+}
+
+.building {
+	fill: $building-color;
+}
+
