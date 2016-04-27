@@ -12,6 +12,7 @@ $unowned-land-color: #ebf5eb;
 
 $sidewalk-color: #ccc;
 $building-color: #000;
+$legend-background: #fff;
 
 .space {
 
@@ -57,5 +58,18 @@ $building-color: #000;
 
 .building {
 	fill: $building-color;
+}
+
+#legend {
+	fill: $legend-background;
+	stroke: $land-color;
+
+	#occ {
+		fill: $space-color;
+	}
+
+	#avail {
+		fill: $space-available-color;
+	}	
 }
 

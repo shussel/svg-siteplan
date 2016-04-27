@@ -15,7 +15,7 @@
     <polygon id="s1763" class="space" fill="#EEEEEE" points="327.21 142.89 329.02 123.62 310.34 122.13 309.6 129.23 263.5 125.58 263.87 119.92 255.54 119.4 253.07 147.33 320.84 153.06 321.8 142.59 "/>
     <polygon id="s1762" class="space available" fill="#EEEEEE" points="252.94 148.82 250.81 172.88 318.47 178.59 320.7 154.55 "/>
     <polygon id="s1761" class="space" fill="#EEEEEE" points="285.99 252.66 292.4 253.2 319.83 231.15 323.89 180.66 318.33 180.14 318.33 180.08 292.3 177.88 "/>
-    <polygon id="s1760" class="space" fill="#EEEEEE" points="253.12 249.88 284.49 252.54 290.09 186.32 258.71 183.67 "/>
+    <polygon id="s1760" fill="#EEEEEE" points="253.12 249.88 284.49 252.54 290.09 186.32 258.71 183.67 "/>
     <polygon id="s1757" class="space" fill="#EEEEEE" points="202.4 245.6 251.63 249.76 257.22 183.55 208 179.4 "/>
     <polygon id="s1756" class="space" fill="#EEEEEE" points="178.01 243.54 200.91 245.47 206.51 179.27 183.6 177.34 "/>
     <polygon id="s1755" class="space" fill="#EEEEEE" points="161.09 242.11 176.52 243.41 182.11 177.22 166.68 175.92 "/>
@@ -30,8 +30,8 @@
     <text x="409.61" y="421.77" fill="black" font-weight="bold" font-size="10.54" font-family="Arial">
       Occupied
     </text>
-    <rect id="legend-avail" fill="#FEFDA0" x="388.24" y="388.88" width="15.04" height="15.04"/>
-    <rect id="legend-occ" fill="#EEEEEE" x="388.39" y="409.97" width="15.04" height="15.04"/>
+    <rect id="avail" fill="#FEFDA0" x="388.24" y="388.88" width="15.04" height="15.04"/>
+    <rect id="occ" fill="#EEEEEE" x="388.39" y="409.97" width="15.04" height="15.04"/>
     <text x="175.06" y="427.59" fill="black" font-weight="bold" font-size="10.54" font-family="Arial">
       Glenside Drive
     </text>
@@ -41,4 +41,5 @@
       </text>
     </g>
   </g>
+  <script xlink:href="/js/svg-siteplan.js" />
 </svg>
