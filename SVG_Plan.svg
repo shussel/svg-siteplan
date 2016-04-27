@@ -13,7 +13,7 @@
   <g id="Spaces">
     <polygon id="hallway" class="space" fill="#EEEEEE" points="250.68 174.37 250.68 174.39 144.41 165.47 143.81 172.43 290.21 184.83 290.81 177.76 "/>
     <polygon id="s1763" class="space" fill="#EEEEEE" points="327.21 142.89 329.02 123.62 310.34 122.13 309.6 129.23 263.5 125.58 263.87 119.92 255.54 119.4 253.07 147.33 320.84 153.06 321.8 142.59 "/>
-    <polygon id="s1762" class="space available" fill="#EEEEEE" points="252.94 148.82 250.81 172.88 318.47 178.59 320.7 154.55 "/>
+    <polygon id="s1762" class="space" fill="#EEEEEE" points="252.94 148.82 250.81 172.88 318.47 178.59 320.7 154.55 "/>
     <polygon id="s1761" class="space" fill="#EEEEEE" points="285.99 252.66 292.4 253.2 319.83 231.15 323.89 180.66 318.33 180.14 318.33 180.08 292.3 177.88 "/>
     <polygon id="s1760" fill="#EEEEEE" points="253.12 249.88 284.49 252.54 290.09 186.32 258.71 183.67 "/>
     <polygon id="s1757" class="space" fill="#EEEEEE" points="202.4 245.6 251.63 249.76 257.22 183.55 208 179.4 "/>
