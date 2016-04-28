@@ -62,14 +62,6 @@ $legend-background: #fff;
 
 #legend {
 	fill: $legend-background;
-	stroke: $land-color;
-
-	#occ {
-		fill: $space-color;
-	}
-
-	#avail {
-		fill: $space-available-color;
-	}	
+	stroke: $land-color;	
 }
 
