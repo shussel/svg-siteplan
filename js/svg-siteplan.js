@@ -1,10 +1,11 @@
 
 // set up plan
-var siteplan = new SVGplan(window.frameElement.getAttribute('data-issmall'));
+var siteplan = new SVGplan(window.frameElement.getAttribute('data-issmall'), window.frameElement.getAttribute('data-space'));
 
-function SVGplan(isSmall) {
+function SVGplan(isSmall, space) {
 
 	this.isSmall = (isSmall === "true");
+	this.space = space;
 
 	// get plan id from custom data:id attribute of svg tag
 	this.id = document.getElementsByTagName("svg")[0].getAttributeNS('plan-data', 'id');		
@@ -27,8 +28,8 @@ function SVGplan(isSmall) {
 		request.onload = function() {
 		  if (request.status >= 200 && request.status < 400)
 		  {
-			var data = JSON.parse(request.responseText);
-			init(data);
+			self.data = JSON.parse(request.responseText);
+			init(self.data);
 		  } else {
 			console.log('request error');
 		  }
@@ -45,25 +46,34 @@ function SVGplan(isSmall) {
 
 		var spaces = Object.keys(data);
 
-		spaces.forEach(function(space) {
-
-			// add label for space
-			if (!self.isSmall)
-			{
-				self.label(space, data[space]["label"]);
-			}
+		spaces.forEach(function(space) {						
 
 			if(el = document.getElementById(space)) {
-			
-				if (data[space]["available"] == true)
+
+				// add label for space
+				if (!self.isSmall)
+				{
+					self.label(space, data[space]["label"]);
+				}
+
+				// color current space red
+				if (space == "s"+self.space)
+				{
+					el.setAttribute('fill', "#ff0000");
+				// or color available space yellow
+				} else if (data[space]["available"] == true)
 				{			
 					el.setAttribute('fill', "#fefda0");
-					el.addEventListener("mouseover", hoverAvailable);
-					el.addEventListener("mouseout", dehoverAvailable);
-				} else {
-					el.addEventListener("mouseover", hoverOccupied);
-					el.addEventListener("mouseout", dehoverOccupied);
 				}
+
+				// add hover events
+				el.addEventListener("mouseover", function() {
+					self.hover(this, space);
+				});
+
+				el.addEventListener("mouseout", function() {
+					self.dehover(this, space);
+				});
 			}
 		});
 	}	
@@ -99,24 +109,42 @@ function SVGplan(isSmall) {
 		}
 	};
 
-}
+	// hover space
+	this.hover = function(el, space) {
 
-function hoverAvailable(e) {
-	this.setAttribute('fill', "#ff0000");
-	document.getElementById("avail").setAttribute('fill', "#ff0000");
-}
+		// only hover if not current space
+		if (space != "s"+self.space)
+		{
+			if (self.data[space]["available"] == true)
+			{
+				var color = "#ff0000";
+				var legend = "avail";
+			} else {
+				var color = "#add8e6";
+				var legend = "occ";
+			}
+			el.setAttribute('fill', color);
+			document.getElementById(legend).setAttribute('fill', color);
+		}
+	};
 
-function dehoverAvailable(e) {
-	this.setAttribute('fill', "#fefda0");
-	document.getElementById("avail").setAttribute('fill', "#fefda0");
-}
+	// dehover space
+	this.dehover = function(el, space) {
 
-function hoverOccupied(e) {
-	this.setAttribute('fill', "#add8e6");
-	document.getElementById("occ").setAttribute('fill', "#add8e6");
-}
+		// only hover if not current space
+		if (space != "s"+self.space)
+		{
+			if (self.data[space]["available"] == true)
+			{
+				var color = "#fefda0";
+				var legend = "avail";
+			} else {
+				var color = "#eeeeee";
+				var legend = "occ";
+			}
+			el.setAttribute('fill', color);
+			document.getElementById(legend).setAttribute('fill', color);
+		}
+	};
 
-function dehoverOccupied(e) {
-	this.setAttribute('fill', "#eeeeee");
-	document.getElementById("occ").setAttribute('fill', "#eeeeee");
 }
