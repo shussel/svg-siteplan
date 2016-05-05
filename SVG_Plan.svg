@@ -41,5 +41,12 @@
       </text>
     </g>
   </g>
+  <g id="Infobox" style="opacity: 0">  
+	  <polygon id="shadow"  style="opacity: .25" fill="#333333" points="166.747,286.708 367.765,286.708 367.765,347.853 166.747,347.853 "/>
+	  <rect id="box" fill="white" stroke="#99CC99" stroke-width="1.91608" x="160.06" y="280.393" width="201.018" height="61.1455"/>
+	  <text x="260.5" y="330.112" id="info2" fill="black" font-weight="normal" font-size="8.62183" font-family="Arial" text-anchor="middle">info 2</text>
+	  <text x="260.5" y="316.656" id="info1" fill="black" font-weight="normal" font-size="11.4957" font-family="Arial" text-anchor="middle">info 1</text>
+	  <text x="260.5" y="301.541" id="title" fill="black" font-weight="bold" font-size="13.4115" font-family="Arial" text-anchor="middle">Title</text>
+ </g>
   <script xlink:href="/js/svg-siteplan.js" />
 </svg>

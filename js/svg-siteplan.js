@@ -13,6 +13,8 @@ function SVGplan(isSmall, space) {
 	// path to JSON data
 	var dataPath = '/siteplan.json';
 
+	var infobox = document.getElementById('Infobox');	
+
 	var self = this;	
 	
 	// hide text in small version
@@ -126,6 +128,11 @@ function SVGplan(isSmall, space) {
 			el.setAttribute('fill', color);
 			document.getElementById(legend).setAttribute('fill', color);
 		}
+		self.setInfo(space);
+		clearInterval(self.fader);
+		self.fader = setInterval(function() {
+			self.fade(.2);
+		}, 75);
 	};
 
 	// dehover space
@@ -145,6 +152,25 @@ function SVGplan(isSmall, space) {
 			el.setAttribute('fill', color);
 			document.getElementById(legend).setAttribute('fill', color);
 		}
+		clearInterval(self.fader);
+		self.fader = setInterval(function() {
+			self.fade(-.2);
+		}, 50);
+		
 	};
+
+	this.setInfo = function (space) {
+		document.getElementById('title').textContent = self.data[space]['name'];
+		document.getElementById('info1').textContent = self.data[space]['comment1'];
+		document.getElementById('info2').textContent = self.data[space]['comment2'];
+	}
+
+	this.fade = function(step) {
+		var opacity = parseFloat(infobox.style.opacity);
+		if (1 >= opacity+step >= 0)
+		{
+			infobox.style.opacity = opacity + step;
+		}
+	}
 
 }
