@@ -13,9 +13,11 @@ function SVGplan(isSmall, space) {
 	// path to JSON data
 	var dataPath = '/siteplan.json';
 
-	var infobox = document.getElementById('Infobox');	
+	var infobox = document.getElementById('Infobox');
 
-	var self = this;	
+	var self = this;
+	var fader;
+	var data;
 	
 	// hide text in small version
 	if (this.isSmall)
@@ -30,8 +32,8 @@ function SVGplan(isSmall, space) {
 		request.onload = function() {
 		  if (request.status >= 200 && request.status < 400)
 		  {
-			self.data = JSON.parse(request.responseText);
-			init(self.data);
+			data = JSON.parse(request.responseText);
+			init();
 		  } else {
 			console.log('request error');
 		  }
@@ -44,7 +46,7 @@ function SVGplan(isSmall, space) {
 		request.send();
 
 	// initialize plan with data
-	var init = function(data) {
+	var init = function() {
 
 		var spaces = Object.keys(data);
 
@@ -117,7 +119,7 @@ function SVGplan(isSmall, space) {
 		// only hover if not current space
 		if (space != "s"+self.space)
 		{
-			if (self.data[space]["available"] == true)
+			if (data[space]["available"] == true)
 			{
 				var color = "#ff0000";
 				var legend = "avail";
@@ -129,9 +131,9 @@ function SVGplan(isSmall, space) {
 			document.getElementById(legend).setAttribute('fill', color);
 		}
 		self.setInfo(space);
-		clearInterval(self.fader);
-		self.fader = setInterval(function() {
-			self.fade(.2);
+		clearInterval(fader);
+		fader = setInterval(function() {
+			fade(.2);
 		}, 75);
 	};
 
@@ -141,7 +143,7 @@ function SVGplan(isSmall, space) {
 		// only hover if not current space
 		if (space != "s"+self.space)
 		{
-			if (self.data[space]["available"] == true)
+			if (data[space]["available"] == true)
 			{
 				var color = "#fefda0";
 				var legend = "avail";
@@ -152,25 +154,26 @@ function SVGplan(isSmall, space) {
 			el.setAttribute('fill', color);
 			document.getElementById(legend).setAttribute('fill', color);
 		}
-		clearInterval(self.fader);
-		self.fader = setInterval(function() {
-			self.fade(-.2);
+		clearInterval(fader);
+		fader = setInterval(function() {
+			fade(-.2);
 		}, 50);
 		
 	};
 
 	this.setInfo = function (space) {
-		document.getElementById('title').textContent = self.data[space]['name'];
-		document.getElementById('info1').textContent = self.data[space]['comment1'];
-		document.getElementById('info2').textContent = self.data[space]['comment2'];
-	}
+		document.getElementById('title').textContent = data[space]['name'];
+		document.getElementById('info1').textContent = data[space]['comment1'];
+		document.getElementById('info2').textContent = data[space]['comment2'];
+	};
 
-	this.fade = function(step) {
+	var fade = function(step) {
 		var opacity = parseFloat(infobox.style.opacity);
-		if (1 >= opacity+step >= 0)
+		if (1 >= opacity+step && opacity+step >= 0)
 		{
 			infobox.style.opacity = opacity + step;
+		} else {
+			clearInterval(fader);
 		}
-	}
-
+	};
 }
