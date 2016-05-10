@@ -4,16 +4,44 @@ var siteplan = new SVGplan(window.frameElement.getAttribute('data-issmall'), win
 
 function SVGplan(isSmall, space) {
 
-	this.isSmall = (isSmall === "true");
+	// public properties
+
+	// database plan id from custom data:id attribute of svg tag
+	this.id = document.getElementsByTagName("svg")[0].getAttributeNS('plan-data', 'id');
+
+	// database id of current space (if any)
 	this.space = space;
 
-	// get plan id from custom data:id attribute of svg tag
-	this.id = document.getElementsByTagName("svg")[0].getAttributeNS('plan-data', 'id');		
+	// small version omits some info
+	this.isSmall = (isSmall === "true");
+
+	// private properties			
 
 	// path to JSON data
 	var dataPath = '/siteplan.json';
 
+	// manipulated dom elements
 	var infobox = document.getElementById('Infobox');
+	var textgroup = document.getElementById("Text");
+
+	var legend = {};
+		legend.occ = document.getElementById("occ");
+		legend.avail = document.getElementById("avail");
+
+	// colors
+	var colors = {
+					"current" : "#ff0000",		// red
+					"available" : "#fefda0",	// yellow
+					"occ" : "#eeeeee",			// grey
+					"hover" : "#add8e6"			// lt. blue
+				 };
+
+	// font
+	var font = {
+					"size" : 10,	
+					"family" : "Arial",
+					"weight" : "bold"
+			   };
 
 	var self = this;
 	var fader;
@@ -22,7 +50,7 @@ function SVGplan(isSmall, space) {
 	// hide text in small version
 	if (this.isSmall)
 	{
-		document.getElementById("Text").setAttributeNS(null,"visibility","hidden");
+		textgroup.setAttributeNS(null,"visibility","hidden");
 	}
 	
 	// load json data for this site plan
@@ -63,11 +91,11 @@ function SVGplan(isSmall, space) {
 				// color current space red
 				if (space == "s"+self.space)
 				{
-					el.setAttribute('fill', "#ff0000");
+					el.setAttribute('fill', colors.current);
 				// or color available space yellow
 				} else if (data[space]["available"] == true)
 				{			
-					el.setAttribute('fill', "#fefda0");
+					el.setAttribute('fill', colors.available);
 				}
 
 				// add hover events
@@ -102,14 +130,14 @@ function SVGplan(isSmall, space) {
 			var newText = document.createElementNS("http://www.w3.org/2000/svg","text");
 				newText.setAttributeNS(null,"x",x);     
 				newText.setAttributeNS(null,"y",y); 
-				newText.setAttributeNS(null,"font-size","10");
-				newText.setAttributeNS(null,"font-family","Arial");
-				newText.setAttributeNS(null,"font-weight","bold");
+				newText.setAttributeNS(null,"font-size",font.size);
+				newText.setAttributeNS(null,"font-family",font.family);
+				newText.setAttributeNS(null,"font-weight",font.weight);
 				newText.setAttributeNS(null,"text-anchor","middle");			
 				newText.appendChild(textNode);
 
 			// add to text group
-			document.getElementById("Text").appendChild(newText);
+			textgroup.appendChild(newText);
 		}
 	};
 
@@ -121,14 +149,14 @@ function SVGplan(isSmall, space) {
 		{
 			if (data[space]["available"] == true)
 			{
-				var color = "#ff0000";
-				var legend = "avail";
+				var color = colors.current;
+				var setlegend = legend.avail;
 			} else {
-				var color = "#add8e6";
-				var legend = "occ";
+				var color = colors.hover;
+				var setlegend = legend.occ;
 			}
 			el.setAttribute('fill', color);
-			document.getElementById(legend).setAttribute('fill', color);
+			setlegend.setAttribute('fill', color);
 		}
 		self.setInfo(space);
 		clearInterval(fader);
@@ -145,14 +173,14 @@ function SVGplan(isSmall, space) {
 		{
 			if (data[space]["available"] == true)
 			{
-				var color = "#fefda0";
-				var legend = "avail";
+				var color = colors.available;
+				var setlegend = legend.avail;
 			} else {
-				var color = "#eeeeee";
-				var legend = "occ";
+				var color = colors.occ;
+				var setlegend = legend.occ;
 			}
 			el.setAttribute('fill', color);
-			document.getElementById(legend).setAttribute('fill', color);
+			setlegend.setAttribute('fill', color);
 		}
 		clearInterval(fader);
 		fader = setInterval(function() {
