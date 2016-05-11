@@ -15,18 +15,15 @@ function SVGplan(isSmall, space) {
 	// small version omits some info
 	this.isSmall = (isSmall === "true");
 
-	// private properties			
+	// private properties	
+	
+	var self = this;
+	var fader, data;
 
 	// path to JSON data
 	var dataPath = '/siteplan.json';
 
-	// manipulated dom elements
-	var infobox = document.getElementById('Infobox');
-	var textgroup = document.getElementById("Text");
-
-	var legend = {};
-		legend.occ = document.getElementById("occ");
-		legend.avail = document.getElementById("avail");
+	var svgns = "http://www.w3.org/2000/svg";
 
 	// colors
 	var colors = {
@@ -41,11 +38,20 @@ function SVGplan(isSmall, space) {
 					"size" : 10,	
 					"family" : "Arial",
 					"weight" : "bold"
-			   };
+			   };	
 
-	var self = this;
-	var fader;
-	var data;
+	// info box
+	var info = {};
+		info.box = document.getElementById('Infobox');
+		info.title = document.getElementById('title');
+		info.info1 = document.getElementById('info1');
+		info.info2 = document.getElementById('info2');
+
+	var textgroup = document.getElementById("Text");
+
+	var legend = {};
+		legend.occ = document.getElementById("occ");
+		legend.avail = document.getElementById("avail");		
 	
 	// hide text in small version
 	if (this.isSmall)
@@ -127,7 +133,7 @@ function SVGplan(isSmall, space) {
 			var textNode = document.createTextNode(label);
 			
 			// create text element
-			var newText = document.createElementNS("http://www.w3.org/2000/svg","text");
+			var newText = document.createElementNS(svgns,"text");
 				newText.setAttributeNS(null,"x",x);     
 				newText.setAttributeNS(null,"y",y); 
 				newText.setAttributeNS(null,"font-size",font.size);
@@ -190,16 +196,16 @@ function SVGplan(isSmall, space) {
 	};
 
 	this.setInfo = function (space) {
-		document.getElementById('title').textContent = data[space]['name'];
-		document.getElementById('info1').textContent = data[space]['comment1'];
-		document.getElementById('info2').textContent = data[space]['comment2'];
+		info.title.textContent = data[space]['name'];
+		info.info1.textContent = data[space]['comment1'];
+		info.info2.textContent = data[space]['comment2'];
 	};
 
 	var fade = function(step) {
-		var opacity = parseFloat(infobox.style.opacity);
+		var opacity = parseFloat(info.box.style.opacity);
 		if (1 >= opacity+step && opacity+step >= 0)
 		{
-			infobox.style.opacity = opacity + step;
+			info.box.style.opacity = opacity + step;
 		} else {
 			clearInterval(fader);
 		}
