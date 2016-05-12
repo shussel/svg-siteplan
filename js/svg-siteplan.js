@@ -139,11 +139,21 @@ function SVGplan(isSmall, space) {
 				newText.setAttributeNS(null,"font-size",font.size);
 				newText.setAttributeNS(null,"font-family",font.family);
 				newText.setAttributeNS(null,"font-weight",font.weight);
-				newText.setAttributeNS(null,"text-anchor","middle");			
+				newText.setAttributeNS(null,"text-anchor","middle");
+				newText.setAttributeNS(null,"class","label");
 				newText.appendChild(textNode);
 
 			// add to text group
 			textgroup.appendChild(newText);
+
+			// repeat hover events on labels
+			newText.addEventListener("mouseover", function() {
+				self.hover(el, id);
+			});
+
+			newText.addEventListener("mouseout", function() {
+				self.dehover(el, id);
+			});
 		}
 	};
 
