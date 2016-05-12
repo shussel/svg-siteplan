@@ -21,7 +21,7 @@ function SVGplan(isSmall, space) {
 	var fader, data;
 
 	// path to JSON data
-	var dataPath = '/siteplan.json';
+	var dataPath = '/data/svgplan.php';
 
 	var svgns = "http://www.w3.org/2000/svg";
 
@@ -61,7 +61,7 @@ function SVGplan(isSmall, space) {
 	
 	// load json data for this site plan
 	var request = new XMLHttpRequest();
-		request.open('GET', dataPath, true);
+		request.open('GET', dataPath+"?id="+this.id, true);
 
 		request.onload = function() {
 		  if (request.status >= 200 && request.status < 400)
@@ -162,13 +162,16 @@ function SVGplan(isSmall, space) {
 				var setlegend = legend.occ;
 			}
 			el.setAttribute('fill', color);
-			setlegend.setAttribute('fill', color);
-		}
-		self.setInfo(space);
-		clearInterval(fader);
-		fader = setInterval(function() {
-			fade(.2);
-		}, 75);
+			if (!self.isSmall)
+			{
+				setlegend.setAttribute('fill', color);
+				self.setInfo(space);
+				clearInterval(fader);
+				fader = setInterval(function() {
+					fade(.2);
+				}, 75);
+			}			
+		}		
 	};
 
 	// dehover space
@@ -186,13 +189,15 @@ function SVGplan(isSmall, space) {
 				var setlegend = legend.occ;
 			}
 			el.setAttribute('fill', color);
-			setlegend.setAttribute('fill', color);
-		}
-		clearInterval(fader);
-		fader = setInterval(function() {
-			fade(-.2);
-		}, 50);
-		
+			if (!self.isSmall)
+			{
+				setlegend.setAttribute('fill', color);
+				clearInterval(fader);
+				fader = setInterval(function() {
+					fade(-.2);
+				}, 50);
+			}			
+		}		
 	};
 
 	this.setInfo = function (space) {
