@@ -1,5 +1,5 @@
 
-// set up plan
+// initialize plan
 var siteplan = new SVGplan(window.frameElement.getAttribute('data-issmall'), window.frameElement.getAttribute('data-space'));
 
 function SVGplan(isSmall, space) {
@@ -46,6 +46,10 @@ function SVGplan(isSmall, space) {
 		info.title = document.getElementById('title');
 		info.info1 = document.getElementById('info1');
 		info.info2 = document.getElementById('info2');
+
+	// save y of title
+	var titleY = parseFloat(info.title.getAttributeNS(null,"y"));
+	console.log(titleY);
 
 	var textgroup = document.getElementById("Text");
 
@@ -205,15 +209,24 @@ function SVGplan(isSmall, space) {
 				clearInterval(fader);
 				fader = setInterval(function() {
 					fade(-.2);
-				}, 50);
+				}, 50);				
 			}			
 		}		
 	};
 
 	this.setInfo = function (space) {
+		
 		info.title.textContent = data[space]['name'];
 		info.info1.textContent = data[space]['comment1'];
-		info.info2.textContent = data[space]['comment2'];
+		info.info2.textContent = data[space]['comment2'];	
+		
+		// move title down if no info
+		if (data[space]['comment1'] == '' && data[space]['comment2'] == '')
+		{
+			info.title.setAttributeNS(null,"y",titleY + 12);
+		} else {
+			info.title.setAttributeNS(null,"y",titleY);
+		}
 	};
 
 	var fade = function(step) {
