@@ -1,8 +1,8 @@
 
 // initialize plan
-var siteplan = new SVGplan(window.frameElement.getAttribute('data-issmall'), window.frameElement.getAttribute('data-space'));
+var siteplan = new SVGplan(window.frameElement.getAttribute('data-issmall'), window.frameElement.getAttribute('data-linkbase'), window.frameElement.getAttribute('data-space'));
 
-function SVGplan(isSmall, space) {
+function SVGplan(isSmall, linkBase, space) {
 
 	// public properties
 
@@ -14,6 +14,8 @@ function SVGplan(isSmall, space) {
 
 	// small version omits some info
 	this.isSmall = (isSmall === "true");
+
+	this.linkBase = linkBase;
 
 	// private properties	
 	
@@ -49,7 +51,6 @@ function SVGplan(isSmall, space) {
 
 	// save y of title
 	var titleY = parseFloat(info.title.getAttributeNS(null,"y"));
-	console.log(titleY);
 
 	var textgroup = document.getElementById("Text");
 
@@ -106,6 +107,14 @@ function SVGplan(isSmall, space) {
 				} else if (data[space]["available"] == true)
 				{			
 					el.setAttribute('fill', colors.available);
+
+					// add class for hand cursor
+					el.classList.add('available');
+
+					// link to space
+					el.addEventListener("click", function() {
+						window.parent.location.href = self.linkBase + (3000 + data[space]["id"]);
+					});
 				}
 
 				// add hover events
